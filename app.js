@@ -18,6 +18,7 @@ const showImages = (images) => {
  // console.log(images);
   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
+  toggleSpinner();
   // show gallery title
   galleryHeader.style.display = 'flex';
   images.forEach(image => {
@@ -30,6 +31,7 @@ const showImages = (images) => {
 }
 
 const getImages = (query) => {
+  toggleSpinner();
   fetch(`https://pixabay.com/api/?key=21909790-803f1f281ca802045b2f36488&q=${query}&image_type=photo`)
     .then(response => response.json())
     .then(data =>{
@@ -144,3 +146,11 @@ document.getElementById('search')
 .addEventListener("keyup", function(event) {
   document.getElementById("search-btn").click(); //Bug Fixed
 });
+
+
+//spinner
+
+const toggleSpinner=()=>{
+  const spinner=document.getElementById('spiner');
+  spinner.classList.toggle('d-none');
+}
